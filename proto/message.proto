@@ -15,3 +15,9 @@ message LoginResp {
     string token = 3;
     string playerId = 4;
 }
+
+
+message LoginNotice {
+    string player_id = 1;
+    string message = 2;
+}

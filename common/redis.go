@@ -34,14 +34,14 @@ func InitRedis() {
 
 // SetPlayerOnline 设置玩家在线状态（绑定网关ID）
 func SetPlayerOnline(playerID string, gatewayID string) error {
-	key := fmt.Sprintf(reids_online_key, ":%s", playerID)
+	key := fmt.Sprintf("%s:%s", reids_online_key, playerID)
 	// 设置为 24 小时过期，防止意外死号永久留存，正常逻辑应由 Close 时删除
 	return RDB.Set(Ctx, key, gatewayID, 24*time.Hour).Err()
 }
 
 // ClearPlayerOnline 清理玩家在线状态
 func ClearPlayerOnline(playerID string) error {
-	key := fmt.Sprintf(reids_online_key, ":%s", playerID)
+	key := fmt.Sprintf("%s:%s", reids_online_key, playerID)
 	return RDB.Del(Ctx, key).Err()
 }
 
